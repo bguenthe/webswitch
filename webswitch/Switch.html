@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:http="http://www.w3.org/1999/xhtml">
+<head>
+    <style>
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 600px;
+            height: 340px;
+        }
+
+        .switch input {
+            display: none;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 260px;
+            width: 260px;
+            left: 40px;
+            bottom: 40px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 10px #2196F3;
+        }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(260px);
+            -ms-transform: translateX(260px);
+            transform: translateX(260px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 340px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Micropython switch</h2>
+
+<label class="switch">
+    <input id="g" type="checkbox" checked>
+    <div class="slider" onclick="function mf(param) {
+        d = document.getElementById('g').checked
+        if (d == true) {
+            var xmlHttp = new XMLHttpRequest()
+//         xmlHttp.open('GET','http://192.168.178.34/aus', false );
+            xmlHttp.open('GET','http://192.168.4.1/aus', true );
+            xmlHttp.send( null );
+            //return xmlHttp.responseText;
+        }
+        else {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open('GET','http://192.168.4.1/an', true );
+            xmlHttp.send( null );
+        }
+    }
+    mf(this)"></div>
+</label>
+
+</body>
+</html>
